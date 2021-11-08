@@ -1,0 +1,35 @@
+
+name: action
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [  master ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Git clone 
+        uses: actions/checkout@v2
+      - name: Pre_build
+        run: |
+          mv rtl/ /home/github_actions/build_test
+          cd /home/github_actions/build_test
+          ls -la
+          echo "Pre build success"
+      - name: Build
+        run: |
+          cd /home/github_actions/build_test
+          ./build.sh
+          ls -la
+          echo "Build success"
+      
+      - name: Post_build
+        run: |
+          cd /home/github_actions/build_test
+          rm -rf rtl/
+          ls -la
+          echo "Post build success"

@@ -14,13 +14,11 @@ jobs:
     steps:
       - name: Git clone 
         uses: actions/checkout@v2
-      - name: Pre_build
+      - name: Build
         run: |
           mv rtl/ /home/github_actions/cordic_runner/cordic_verif
           cd /home/github_actions/cordic_runner/cordic_verif
           echo ${{github.event.pusher.email}} > email
           echo ${{github.actor}} > name
-          echo "Pre build success"
-          
           ./start.sh
           echo "Build success"

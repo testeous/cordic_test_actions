@@ -17,12 +17,14 @@ jobs:
       - name: Pre_build
         run: |
           pwd
+          echo ${{ github.event.head_commits[0].message }}
           mv rtl/ /home/github_actions/build_test
           cd /home/github_actions/build_test
           ls -la
           echo "Pre build success"
       - name: Build
         run: |
+          echo ${{github.actor}}
           cd /home/github_actions/build_test
           ls -la
           echo "Build success"

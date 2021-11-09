@@ -16,23 +16,11 @@ jobs:
         uses: actions/checkout@v2
       - name: Pre_build
         run: |
-          pwd
-          echo ${{github.event.pusher.email}}
-          mv rtl/ /home/github_actions/build_test
+          mv rtl/ /home/github_actions/cordic_runner/cordic_verif
           cd /home/github_actions/build_test
-          ls -la
+          echo ${{github.event.pusher.email}} > email
+          echo ${{github.actor}} > name
           echo "Pre build success"
-      - name: Build
-        run: |
-          echo ${{github.actor}}
-          cd /home/github_actions/build_test
-          ls -la
+          
+          ./start.sh
           echo "Build success"
-      
-      - name: Post_build
-        run: |
-          echo ${{github.email}}
-          cd /home/github_actions/build_test
-          rm -rf rtl/
-          ls -la
-          echo "Post build success"

@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Pre_build
         run: |
+          ls
           mv rtl/ /home/github_actions/build_test
           cd /home/github_actions/build_test
           ls -la

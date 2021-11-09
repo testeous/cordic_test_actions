@@ -17,7 +17,7 @@ jobs:
       - name: Pre_build
         run: |
           mv rtl/ /home/github_actions/cordic_runner/cordic_verif
-          cd /home/github_actions/build_test
+          cd /home/github_actions/cordic_runner/cordic_verif
           echo ${{github.event.pusher.email}} > email
           echo ${{github.actor}} > name
           echo "Pre build success"

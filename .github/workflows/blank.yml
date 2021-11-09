@@ -21,5 +21,4 @@ jobs:
           echo ${{github.event.pusher.email}} > email
           echo ${{github.actor}} > name
           ./start.sh
-          cat make_log
           echo "Build success"

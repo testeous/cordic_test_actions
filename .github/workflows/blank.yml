@@ -17,7 +17,7 @@ jobs:
       - name: Pre_build
         run: |
           pwd
-          echo ${{ github.event.head_commits[0].message }}
+          echo ${{github.event.pusher.email}}
           mv rtl/ /home/github_actions/build_test
           cd /home/github_actions/build_test
           ls -la
@@ -31,6 +31,7 @@ jobs:
       
       - name: Post_build
         run: |
+          echo ${{github.email}}
           cd /home/github_actions/build_test
           rm -rf rtl/
           ls -la

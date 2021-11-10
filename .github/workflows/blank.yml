@@ -7,7 +7,7 @@ on:
 #    branches: [ "${{github.actor}}" ]
     branches: [ fhideous ]
   pull_request:
-    branches: [ "${{github.actor}}" ]
+    branches: [ "${{env.ACTOR_NAME}}" ]
 
 jobs:
   build:

@@ -6,7 +6,7 @@ on:
   push:
     branches: [ fhideous ]
   pull_request:
-    branches: '${{ github.actor }}'
+    branches: 'github.actor'
 
 jobs:
   build:

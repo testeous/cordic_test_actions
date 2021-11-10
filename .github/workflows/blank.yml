@@ -2,8 +2,8 @@
 name: action
 
 on:
-#  push:
-#    branches: [ master ]
+  push:
+    branches: [ '${{github.actor}}' ]
   pull_request:
     branches: [ '${{github.actor}}' ]
 

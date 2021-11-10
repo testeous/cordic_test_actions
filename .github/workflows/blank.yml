@@ -1,7 +1,8 @@
 
 name: action
 
-
+env: 
+  ACTOR_NAME: 'github.actor'
 on:
   push:
     branches: [ fhideous ]

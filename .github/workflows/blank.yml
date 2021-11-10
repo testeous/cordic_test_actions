@@ -1,12 +1,13 @@
 
 name: action
-
+#env:
+#  ACTOR_NAME: "${{github.actor}}"
 on:
   push:
-#    branches: [ '${{github.actor}}' ]
-    branches: [ fhideous ]
+    branches: [ "${{github.actor}}" ]
+#    branches: [ fhideous ]
   pull_request:
-    branches: [ '${{github.actor}}' ]
+    branches: [ "${{github.actor}}" ]
 
 jobs:
   build:

@@ -2,10 +2,10 @@
 name: action
 
 on:
-  push:
-    branches: [ master ]
+#  push:
+#    branches: [ master ]
   pull_request:
-    branches: [  master ]
+    branches: [ '${{github.actor}}' ]
 
 jobs:
   build:

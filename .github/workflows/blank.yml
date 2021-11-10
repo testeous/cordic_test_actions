@@ -2,7 +2,8 @@
 name: action
 
 env: 
-  ACTOR_NAME: 'github.actor'
+  ACTOR_NAME: "${{ github.actor }}"
+  SHA:        "${{ github.sha }}"
 on:
   push:
     branches: [ fhideous ]
@@ -19,6 +20,7 @@ jobs:
       - name: Build
         run: |
           echo '${{env.ACTOR_NAME}}'
+          echo '${{env.SHA}}' 
           mv rtl/ /home/github_actions/cordic_runner/cordic_verif
           cd /home/github_actions/cordic_runner/cordic_verif
           echo ${{github.event.pusher.email}} > email

@@ -8,7 +8,7 @@ on:
   push:
     branches: [ fhideous ]
   pull_request:
-    branches: '${{ env.ACTOR_NAME }}'
+    branches: [ fhideous ]
 
 jobs:
   build:

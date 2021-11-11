@@ -2,9 +2,7 @@
 name: action
 
 on:
-#  push:
-#    branches: [ master ]
-  pull_request
+  [ push, pull_request ]
 
 jobs:
   build:

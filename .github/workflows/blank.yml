@@ -1,0 +1,22 @@
+name: action
+
+on:
+  [ push, pull_request ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Git clone 
+        uses: actions/checkout@v2
+      - name: Build
+        run: |
+          echo "Original test"
+          ls -la 
+          mv rtl/ /home/github_actions/cordic_runner/cordic_verif
+          cd /home/github_actions/cordic_runner/cordic_verif
+          echo ${{github.event.pusher.email}} > email
+          echo ${{github.actor}} > name
+          ./start.sh
+          echo "Build success"

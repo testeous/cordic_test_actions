@@ -4,8 +4,7 @@ name: action
 on:
 #  push:
 #    branches: [ master ]
-  pull_request:
-    branches: [ testeous ]
+  pull_request
 
 jobs:
   build:

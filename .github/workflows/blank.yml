@@ -14,9 +14,5 @@ jobs:
         run: |
           echo "Original test"
           ls -la 
-          mv rtl/ /home/github_actions/cordic_runner/cordic_verif
-          cd /home/github_actions/cordic_runner/cordic_verif
-          echo ${{github.event.pusher.email}} > email
-          echo ${{github.actor}} > name
-          ./start.sh
+       
           echo "Build success"

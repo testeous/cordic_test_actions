@@ -13,6 +13,7 @@ jobs:
       - name: Build
         run: |
           echo "Original test"
-          ls -la 
+          touch file 
+          ls -la  file         
        
           echo "Build success"

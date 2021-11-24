@@ -2,21 +2,50 @@
 name: action
 
 on:
-  [ push, pull_request ]
+  [ workflow_dispatch ]
 
 jobs:
-  build:
+  
+  prep:
     runs-on: self-hosted
-
     steps:
       - name: Git clone 
         uses: actions/checkout@v2
       - name: Build
         run: |
-          ls -la 
-          mv rtl/ /home/github_actions/cordic_runner/cordic_verif
-          cd /home/github_actions/cordic_runner/cordic_verif
-          echo ${{github.event.pusher.email}} > email
-          echo ${{github.actor}} > name
-          ./start.sh
-          echo "Build success"
+          pwd 
+          echo "Preparation..."
+          cp /home/github_actions/scripts/check_user.sh ./
+          echo ${GITHUB_ACTOR} > trig_user
+          ./check_user.sh  trig_user
+          echo "User recognized"
+          cp /home/github_actions/scripts/prep.sh ./
+          ./prep.sh
+          echo "End of preparation."
+  
+  test:
+    runs-on: self-hosted
+    needs: prep
+    steps:
+      - name: Checking
+        run: |  
+          echo "Checking fast tests..."
+          . /home/github_actions/scripts/build_fast.sh
+          echo "Fast tests complite!"
+          
+          echo "Checking full tests..."
+          . /home/github_actions/scripts/build_full.sh
+          echo "Full tests complite!"
+          cat /home/github_actions/grats/ascii_snop
+  
+  send_log:
+    runs-on: self-hosted
+    needs: [prep, test]
+    steps: 
+      - name: Send_log
+        if: ${{ failure() }}
+        run: |
+          . /home/github_actions/scripts/send_log.sh
+          echo "Check your email"
+
+        
